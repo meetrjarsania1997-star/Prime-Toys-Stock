@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { storageService } from '../services/storageService';
 import { User, View } from '../types';
@@ -46,57 +45,57 @@ const Auth: React.FC<AuthProps> = ({ type, onSuccess, setView }) => {
 
   return (
     <div className="flex-1 flex items-center justify-center p-6">
-      <div className="max-w-md w-full bg-white/80 backdrop-blur-2xl rounded-[3.5rem] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-12 border border-white/50">
-        <div className="text-center mb-10">
-          <div className="text-6xl mb-6 transform hover:scale-110 transition-transform duration-300 inline-block">
+      <div className="max-w-md w-full bg-white/60 backdrop-blur-xl rounded-[3rem] shadow-2xl p-10 border border-white/50">
+        <div className="text-center mb-8">
+          <div className="text-5xl mb-4">
             {type === 'LOGIN' ? '👋' : '🎉'}
           </div>
-          <h2 className="text-4xl font-black text-gray-800 tracking-tight">
-            {type === 'LOGIN' ? 'Welcome Back!' : 'Join Us!'}
+          <h2 className="text-3xl font-bold text-gray-800">
+            {type === 'LOGIN' ? 'Welcome Back!' : 'Create Account'}
           </h2>
-          <p className="text-gray-600 mt-3 font-medium">
-            {type === 'LOGIN' ? 'Log in to your toy kingdom' : 'Start your management journey'}
+          <p className="text-gray-500 mt-2">
+            {type === 'LOGIN' ? 'Log in to your store' : 'Start managing your stock today'}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-widest">Username</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">Username</label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-6 py-5 bg-white/50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl transition-all outline-none shadow-sm font-medium"
-              placeholder="e.g. MasterToy"
+              className="w-full px-4 py-3 bg-white/50 border border-gray-200 focus:border-blue-400 rounded-xl outline-none transition-all"
+              placeholder="Enter username"
             />
           </div>
           <div>
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-widest">Password</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-6 py-5 bg-white/50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl transition-all outline-none shadow-sm font-medium"
+              className="w-full px-4 py-3 bg-white/50 border border-gray-200 focus:border-blue-400 rounded-xl outline-none transition-all"
               placeholder="••••••••"
             />
           </div>
 
-          {error && <p className="text-red-500 font-bold text-center animate-shake">{error}</p>}
+          {error && <p className="text-red-500 text-sm font-medium text-center">{error}</p>}
 
           <button
             type="submit"
-            className="w-full py-5 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-black text-xl rounded-2xl shadow-xl shadow-blue-200 hover:-translate-y-1 transition-all active:scale-95"
+            className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-all active:scale-95"
           >
-            {type === 'LOGIN' ? 'Let\'s Go!' : 'Create Account'}
+            {type === 'LOGIN' ? 'Login' : 'Sign Up'}
           </button>
         </form>
 
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <button
             onClick={() => setView(type === 'LOGIN' ? 'SIGNUP' : 'LOGIN')}
-            className="text-indigo-600 font-black hover:text-indigo-800 transition-colors"
+            className="text-blue-600 font-semibold hover:underline"
           >
-            {type === 'LOGIN' ? "New here? Sign Up" : 'Already a member? Login'}
+            {type === 'LOGIN' ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
           </button>
         </div>
       </div>

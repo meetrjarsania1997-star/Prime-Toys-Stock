@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { User, StockItem, View } from '../types';
 import { storageService } from '../services/storageService';
@@ -66,18 +65,18 @@ const AddStock: React.FC<AddStockProps> = ({ currentUser, setView }) => {
 
   return (
     <div className="flex-1 p-6 md:p-12 overflow-y-auto pb-24">
-      <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-2xl rounded-[3.5rem] shadow-2xl p-8 md:p-12 border border-white/50 mb-10">
-        <div className="flex items-center space-x-6 mb-12">
-          <div className="p-5 bg-gradient-to-br from-green-400 to-green-600 rounded-[2rem] text-4xl shadow-lg transform -rotate-3">🧸</div>
+      <div className="max-w-2xl mx-auto bg-white rounded-[3rem] shadow-2xl p-8 md:p-12 border border-green-50 mb-10">
+        <div className="flex items-center space-x-4 mb-10">
+          <div className="p-4 bg-green-100 rounded-3xl text-3xl">🧸</div>
           <div>
-            <h2 className="text-4xl font-black text-gray-800 tracking-tight">Add Toy</h2>
-            <p className="text-gray-600 font-medium">Add a fresh arrival to the inventory</p>
+            <h2 className="text-3xl font-bold text-gray-800">Add New Arrival</h2>
+            <p className="text-gray-500">Add fresh toys to your amazing inventory</p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="md:col-span-2">
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-wider">Item Name</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Item Name</label>
             <input
               ref={itemNameRef}
               name="itemName"
@@ -85,112 +84,124 @@ const AddStock: React.FC<AddStockProps> = ({ currentUser, setView }) => {
               value={formData.itemName}
               onChange={handleInputChange}
               placeholder="e.g. Remote Control Car"
-              className="w-full px-6 py-4 bg-white/50 border-2 border-gray-100 focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all shadow-sm font-medium"
+              className="w-full px-5 py-3 bg-gray-50 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-wider">Item Code</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Item Code</label>
             <input
               name="itemCode"
               type="text"
               value={formData.itemCode}
               onChange={handleInputChange}
               placeholder="e.g. T-123"
-              className="w-full px-6 py-4 bg-white/50 border-2 border-gray-100 focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all shadow-sm font-medium"
+              className="w-full px-5 py-3 bg-gray-50 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-wider">Buy Price (₹)</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Purchase Price (₹)</label>
             <input
               name="purchasePrice"
               type="number"
               value={formData.purchasePrice}
               onChange={handleInputChange}
               placeholder="0.00"
-              className="w-full px-6 py-4 bg-white/50 border-2 border-gray-100 focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all shadow-sm font-medium"
+              className="w-full px-5 py-3 bg-gray-50 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-wider">Sell Price (₹)</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Selling Price (₹)</label>
             <input
               name="sellingPrice"
               type="number"
               value={formData.sellingPrice}
               onChange={handleInputChange}
               placeholder="0.00"
-              className="w-full px-6 py-4 bg-white/50 border-2 border-gray-100 focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all shadow-sm font-medium"
+              className="w-full px-5 py-3 bg-gray-50 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-wider">Quantity</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Quantity</label>
             <input
               name="quantity"
               type="number"
               value={formData.quantity}
               onChange={handleInputChange}
               placeholder="0"
-              className="w-full px-6 py-4 bg-white/50 border-2 border-gray-100 focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all shadow-sm font-medium"
+              className="w-full px-5 py-3 bg-gray-50 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none transition-all"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-sm font-black text-gray-700 mb-2 px-1 uppercase tracking-wider">Stock Value</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Stock Value</label>
             <div className="relative">
-              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-blue-600 font-black text-xl">₹</span>
+              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₹</span>
               <input
                 name="stockValue"
                 type="number"
                 readOnly
                 value={formData.stockValue}
-                className="w-full pl-12 pr-6 py-5 bg-blue-600 text-white font-black text-2xl rounded-3xl outline-none shadow-xl border-none"
+                className="w-full pl-10 pr-5 py-3 bg-blue-50/50 border-2 border-dashed border-blue-200 text-blue-700 font-bold rounded-2xl outline-none"
               />
             </div>
           </div>
 
-          {error && <p className="md:col-span-2 text-red-500 font-bold text-center">{error}</p>}
+          {error && <p className="md:col-span-2 text-red-500 text-sm font-medium text-center">{error}</p>}
 
-          <div className="md:col-span-2 flex gap-4 mt-6">
+          <div className="md:col-span-2 flex gap-4 mt-4">
             <button
               type="button"
               onClick={() => setView('HOME')}
-              className="flex-1 py-5 bg-white text-gray-600 font-bold rounded-2xl hover:bg-gray-50 border-2 border-gray-100 transition-all active:scale-95 shadow-md"
+              className="flex-1 py-4 bg-gray-100 text-gray-600 font-bold rounded-2xl hover:bg-gray-200 transition-all active:scale-95"
             >
               Back
             </button>
             <button
               type="submit"
-              className="flex-[2] py-5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-green-200 hover:-translate-y-1 transition-all active:scale-95"
+              className="flex-[2] py-4 bg-green-500 text-white font-bold rounded-2xl shadow-lg shadow-green-100 hover:bg-green-600 hover:-translate-y-0.5 transition-all active:scale-95"
             >
-              🚀 Submit Toy
+              Submit Item
             </button>
           </div>
         </form>
       </div>
 
       {lastAddedItem && (
-        <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-md rounded-[2.5rem] p-8 border-4 border-green-400 shadow-[0_20px_50px_rgba(34,197,94,0.3)] animate-in fade-in zoom-in duration-500">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-black text-green-600 flex items-center gap-3">
-              <span className="text-3xl">✨</span> Just Added!
+        <div className="max-w-2xl mx-auto bg-blue-50/80 backdrop-blur-sm rounded-3xl p-6 border-2 border-blue-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-blue-700 font-bold flex items-center gap-2">
+              <span className="text-xl">✨</span> Recently Added
             </h3>
-            <span className="px-4 py-2 bg-green-500 text-white text-xs font-black rounded-full uppercase tracking-tighter">SAVED</span>
+            <span className="text-xs font-bold bg-green-500 text-white px-3 py-1 rounded-full uppercase tracking-widest">Saved</span>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100 shadow-sm">
-              <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest mb-1">Name</p>
-              <p className="text-gray-800 font-black truncate">{lastAddedItem.itemName}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Item Name</p>
+              <p className="text-gray-800 font-bold truncate">{lastAddedItem.itemName}</p>
             </div>
-            <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100 shadow-sm">
-              <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest mb-1">Code</p>
-              <p className="text-gray-800 font-black">{lastAddedItem.itemCode}</p>
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Code</p>
+              <p className="text-gray-800 font-bold">{lastAddedItem.itemCode}</p>
             </div>
-            <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100 shadow-sm">
-              <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest mb-1">Qty</p>
-              <p className="text-gray-800 font-black">{lastAddedItem.quantity} units</p>
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Quantity</p>
+              <p className="text-gray-800 font-bold">{lastAddedItem.quantity} units</p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Purchase Price</p>
+              <p className="text-gray-800 font-bold">₹{lastAddedItem.purchasePrice.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Selling Price</p>
+              <p className="text-gray-800 font-bold">₹{lastAddedItem.sellingPrice.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Total Value</p>
+              <p className="text-blue-600 font-black">₹{lastAddedItem.stockValue.toLocaleString()}</p>
             </div>
           </div>
         </div>

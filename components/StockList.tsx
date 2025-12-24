@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { User, StockItem, View } from '../types';
 import { storageService } from '../services/storageService';
@@ -70,29 +69,29 @@ const StockList: React.FC<StockListProps> = ({ currentUser, setView }) => {
 
   return (
     <div className="flex-1 p-4 md:p-8 overflow-y-auto">
-      <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-2xl rounded-[3rem] shadow-2xl p-8 md:p-12 border border-white/50">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+      <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-xl rounded-[3rem] shadow-2xl p-8 md:p-12 border border-white/40 shadow-sm">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
-            <h2 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center gap-4">
-              <span>📋</span> Warehouse
+            <h2 className="text-4xl font-black text-blue-600 flex items-center gap-3">
+              <span>📋</span> Stock Inventory
             </h2>
-            <p className="text-gray-700 font-bold mt-2">Managing {stocks.length} toys in the magic vault</p>
+            <p className="text-gray-500 font-medium">Viewing {stocks.length} magic toys in storage</p>
           </div>
-          <div className="flex gap-4 w-full md:w-auto">
+          <div className="flex gap-3 w-full md:w-auto">
             <button
               onClick={downloadPDF}
               disabled={stocks.length === 0}
-              className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-black transition-all shadow-lg ${
+              className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all ${
                 stocks.length === 0 
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white hover:scale-105 active:scale-95'
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                  : 'bg-purple-600 text-white shadow-lg hover:bg-purple-700 active:scale-95'
               }`}
             >
-              <span>📥</span> Export PDF
+              <span>📥</span> Download PDF
             </button>
             <button
               onClick={() => setView('ADD_STOCK')}
-              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl font-black shadow-lg hover:scale-105 active:scale-95 transition-all"
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-2xl font-bold shadow-lg hover:bg-blue-700 transition-all active:scale-95"
             >
               <span>➕</span> Add More
             </button>
@@ -100,59 +99,59 @@ const StockList: React.FC<StockListProps> = ({ currentUser, setView }) => {
         </div>
 
         {stocks.length === 0 ? (
-          <div className="text-center py-24 bg-blue-50/50 rounded-[3rem] border-4 border-dashed border-blue-100">
-            <div className="text-8xl mb-6">📦</div>
-            <h3 className="text-3xl font-black text-gray-800">Warehouse Empty!</h3>
-            <p className="text-gray-600 font-bold mb-10 max-w-md mx-auto">No toys found. Let's start stocking up your magic store!</p>
+          <div className="text-center py-20 bg-blue-50/50 rounded-[2rem] border-2 border-dashed border-blue-100">
+            <div className="text-6xl mb-4">📦</div>
+            <h3 className="text-xl font-bold text-gray-800">Your stock is empty!</h3>
+            <p className="text-gray-500 mb-6">Time to add some amazing toys to your collection.</p>
             <button
               onClick={() => setView('ADD_STOCK')}
-              className="px-10 py-5 bg-blue-600 text-white rounded-[2rem] font-black text-xl hover:bg-blue-700 shadow-xl transition-all"
+              className="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 shadow-md"
             >
-              Add Your First Toy
+              Add Your First Item
             </button>
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-[2.5rem] border border-gray-100 shadow-2xl bg-white/40">
+          <div className="overflow-x-auto rounded-3xl border border-gray-100 shadow-sm">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-                  <th className="px-8 py-6 font-black uppercase text-xs tracking-[0.2em] rounded-tl-[2.5rem]">Item Name</th>
-                  <th className="px-8 py-6 font-black uppercase text-xs tracking-[0.2em]">Code</th>
-                  <th className="px-8 py-6 font-black uppercase text-xs tracking-[0.2em] text-right">Purchase (₹)</th>
-                  <th className="px-8 py-6 font-black uppercase text-xs tracking-[0.2em] text-right">Selling (₹)</th>
-                  <th className="px-8 py-6 font-black uppercase text-xs tracking-[0.2em] text-center">Qty</th>
-                  <th className="px-8 py-6 font-black uppercase text-xs tracking-[0.2em] text-right rounded-tr-[2.5rem]">Value</th>
+                <tr className="bg-blue-600 text-white">
+                  <th className="px-6 py-5 font-bold uppercase text-xs tracking-wider rounded-tl-3xl">Item Name</th>
+                  <th className="px-6 py-5 font-bold uppercase text-xs tracking-wider">Item Code</th>
+                  <th className="px-6 py-5 font-bold uppercase text-xs tracking-wider text-right">Purchase Price (₹)</th>
+                  <th className="px-6 py-5 font-bold uppercase text-xs tracking-wider text-right">Selling Price (₹)</th>
+                  <th className="px-6 py-5 font-bold uppercase text-xs tracking-wider text-center">Quantity</th>
+                  <th className="px-6 py-5 font-bold uppercase text-xs tracking-wider text-right rounded-tr-3xl">Stock Value</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 font-medium text-gray-700">
+              <tbody className="divide-y divide-gray-100">
                 {stocks.map((item, idx) => (
                   <tr 
                     key={item.id} 
-                    className={`hover:bg-blue-50/70 transition-colors group ${idx % 2 === 0 ? 'bg-white/60' : 'bg-blue-50/30'}`}
+                    className={`hover:bg-blue-50/50 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-blue-50/20'}`}
                   >
-                    <td className="px-8 py-5 font-black text-gray-900 group-hover:text-blue-700">{item.itemName}</td>
-                    <td className="px-8 py-5">
-                      <span className="px-4 py-1.5 bg-gray-200 text-gray-700 rounded-full text-[10px] font-black border border-gray-300 shadow-sm">
+                    <td className="px-6 py-4 font-bold text-gray-800">{item.itemName}</td>
+                    <td className="px-6 py-4">
+                      <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-bold border border-gray-200">
                         {item.itemCode}
                       </span>
                     </td>
-                    <td className="px-8 py-5 text-right font-bold text-gray-500">₹{item.purchasePrice.toLocaleString()}</td>
-                    <td className="px-8 py-5 text-right text-gray-900 font-black">₹{item.sellingPrice.toLocaleString()}</td>
-                    <td className="px-8 py-5 text-center">
-                      <span className={`px-5 py-2 rounded-2xl text-xs font-black shadow-sm ${
-                        item.quantity < 5 ? 'bg-red-500 text-white animate-pulse' : 'bg-green-100 text-green-700'
+                    <td className="px-6 py-4 text-right text-gray-600 font-medium">₹{item.purchasePrice.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-right text-gray-800 font-bold">₹{item.sellingPrice.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-center">
+                      <span className={`px-4 py-1 rounded-full text-sm font-bold ${
+                        item.quantity < 5 ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'
                       }`}>
                         {item.quantity}
                       </span>
                     </td>
-                    <td className="px-8 py-5 text-right text-blue-700 font-black text-lg">₹{item.stockValue.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-right text-blue-600 font-black">₹{item.stockValue.toLocaleString()}</td>
                   </tr>
                 ))}
               </tbody>
               <tfoot>
-                <tr className="bg-white/95">
-                  <td colSpan={5} className="px-8 py-8 text-right font-black text-gray-400 uppercase tracking-widest rounded-bl-[2.5rem]">Grand Total Inventory Value:</td>
-                  <td className="px-8 py-8 text-right font-black text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800 rounded-br-[2.5rem]">
+                <tr className="bg-gray-50/80">
+                  <td colSpan={5} className="px-6 py-5 text-right font-bold text-gray-500 rounded-bl-3xl">Total Inventory Value:</td>
+                  <td className="px-6 py-5 text-right font-black text-2xl text-blue-700 rounded-br-3xl">
                     ₹{stocks.reduce((acc, curr) => acc + curr.stockValue, 0).toLocaleString()}
                   </td>
                 </tr>
